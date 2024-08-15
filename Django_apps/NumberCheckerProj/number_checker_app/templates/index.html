@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Checker App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .container {
+            width: 400px;
+            height: 780px;
+            margin: 70px auto;
+            border-radius: 30px;
+            border: 2px solid black;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Number Checker</h1>
+
+        <br>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary" style="border-radius: 20px;">Check</button>
+        </form>
+
+        <br>
+
+        {% if result %}
+            <h2>Results:</h2>
+            <ul>
+                {% if 'is_prime' in result %}
+                <li>Prime: {{ result.is_prime }}</li>
+                {% endif %}
+                {% if 'is_odd' in result %}
+                <li>Odd: {{ result.is_odd }}</li>
+                {% endif %}
+                {% if 'is_even' in result %}
+                <li>Even: {{ result.is_even }}</li>
+                {% endif %}
+                {% if 'is_perfect_square' in result %}
+                <li>Perfect Square: {{ result.is_perfect_square }}</li>
+                {% endif %}
+            </ul>
+        {% else %}
+            <h4>None of the conditions checked</h4>
+        {% endif %}
+    </div>
+</body>
+</html>
+'''
